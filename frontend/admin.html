@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Admin Dashboard — Negotiation analytics and controls" />
+    <title>Admin Dashboard — AI Sales Negotiator</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="admin-layout" id="admin-app">
+        <!-- Header -->
+        <div class="admin-header">
+            <h1>📊 Admin Dashboard</h1>
+            <div style="display:flex; align-items:center; gap:16px">
+                <span style="font-size:13px; color: var(--text-muted)">👤 <span id="admin-name">Admin</span></span>
+                <a href="/" class="back-link">← Chat</a>
+                <button class="logout-btn" id="logout-btn">🚪 Logout</button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid" id="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-total">—</div>
+                <div class="stat-label">Total Negotiations</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value success" id="stat-closed">—</div>
+                <div class="stat-label">Deals Closed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-winrate">—</div>
+                <div class="stat-label">Win Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-margin">—</div>
+                <div class="stat-label">Avg Margin Retained</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value success" id="stat-revenue">—</div>
+                <div class="stat-label">Total Revenue</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-rounds">—</div>
+                <div class="stat-label">Avg Rounds</div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-grid" id="charts-section">
+            <div class="chart-card">
+                <h3>💰 Revenue by Session</h3>
+                <canvas id="revenue-chart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>📈 Outcome Distribution</h3>
+                <canvas id="outcome-chart"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Sessions -->
+        <div class="admin-section">
+            <h2>🔄 Recent Sessions</h2>
+            <div id="sessions-container">
+                <div class="empty-state">
+                    <div class="emoji">📋</div>
+                    <p>No sessions logged yet. Complete a negotiation to see data here.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Config -->
+        <div class="admin-section">
+            <h2>⚙️ Pricing Configuration</h2>
+            <div class="config-grid" id="config-grid">
+                <div class="config-field">
+                    <label for="cfg-floor">Floor Price Discount</label>
+                    <input type="number" id="cfg-floor" step="0.01" min="0.5" max="1.0" />
+                </div>
+                <div class="config-field">
+                    <label for="cfg-markup">Opening Markup</label>
+                    <input type="number" id="cfg-markup" step="0.01" min="1.0" max="2.0" />
+                </div>
+                <div class="config-field">
+                    <label for="cfg-rounds">Max Rounds</label>
+                    <input type="number" id="cfg-rounds" step="1" min="1" max="50" />
+                </div>
+                <div class="config-field">
+                    <label for="cfg-margin">Min Profit Margin %</label>
+                    <input type="number" id="cfg-margin" step="1" min="0" max="100" />
+                </div>
+            </div>
+            <div class="config-actions">
+                <button class="btn btn-primary" id="save-config-btn">💾 Save Configuration</button>
+                <span id="config-status" style="color: var(--success); font-size: 13px; align-self: center;"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Modal Overlay -->
+    <div id="chat-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>💬 Session History <span id="modal-session-id"
+                        style="font-size:12px;color:#aaa;font-weight:normal;margin-left:8px;"></span></h2>
+                <button id="close-modal-btn">✖</button>
+            </div>
+            <div class="modal-body" id="modal-messages">
+                <!-- Messages injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/admin.js"></script>
+</body>
+
+</html>

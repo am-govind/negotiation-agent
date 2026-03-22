@@ -1,0 +1,418 @@
+/* ── Chat Page Layout ─────────────────────────────────────── */
+.app-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+.sidebar {
+    background: rgba(0, 0, 0, 0.35);
+    border-right: 1px solid var(--border-glass);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    text-align: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 179, 71, 0.1);
+}
+
+.sidebar-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.sidebar-header p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.setup-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.setup-section .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.state-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.sidebar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.metrics-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 179, 71, 0.04);
+    border: 1px solid rgba(255, 179, 71, 0.1);
+}
+
+.metrics-panel h3 {
+    font-size: 13px;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.offer-history {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 120px;
+    overflow-y: auto;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.offer-history .offer-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* ── Main Chat Area ───────────────────────────────────────── */
+.chat-area {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.chat-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--border-glass);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.chat-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gradient-warm);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.chat-header .subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* ── Product Image Card ───────────────────────────────────── */
+.product-image-card {
+    align-self: center;
+    max-width: 400px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 0.5s ease;
+}
+
+.product-image-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.product-image-title {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.product-image-title strong {
+    color: var(--amber);
+    text-transform: capitalize;
+}
+
+/* ── Messages ─────────────────────────────────────────────── */
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.message {
+    max-width: 75%;
+    animation: fadeInUp 0.3s ease;
+}
+
+.message.user {
+    align-self: flex-end;
+}
+
+.message.assistant {
+    align-self: flex-start;
+}
+
+.message-bubble {
+    padding: 14px 20px;
+    border-radius: var(--radius-lg);
+    font-size: 14px;
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+/* ── Markdown Styles within Bubble ──────────────────────────── */
+.message-bubble h3,
+.message-bubble h2 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 12px 0 6px 0;
+    color: var(--text);
+}
+
+.message-bubble h3:first-child,
+.message-bubble h2:first-child {
+    margin-top: 0;
+}
+
+.message-bubble strong {
+    font-weight: 600;
+    /* Optional: you can tint bolds with var(--amber) or similar for pop */
+    color: var(--text);
+}
+
+.message-bubble .bullet-item {
+    margin: 4px 0 4px 12px;
+    text-indent: -10px;
+}
+
+.message.user .message-bubble {
+    background: var(--gradient-sunset);
+    color: #1a1a1a;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 4px 20px rgba(255, 107, 107, 0.2);
+}
+
+.message.assistant .message-bubble {
+    background: rgba(78, 205, 196, 0.08);
+    border: 1px solid rgba(78, 205, 196, 0.12);
+    color: var(--text-primary);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+}
+
+.message-sender {
+    font-size: 11px;
+    margin-bottom: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.message.user .message-sender {
+    color: var(--coral);
+}
+
+.message.assistant .message-sender {
+    color: var(--cyan);
+}
+
+/* ── Chat Input ───────────────────────────────────────────── */
+.chat-input-area {
+    padding: 16px 32px 24px;
+    border-top: 1px solid var(--border-glass);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.chat-input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-full);
+    padding: 6px 6px 6px 20px;
+    transition: all 0.3s ease;
+}
+
+.chat-input-wrapper:focus-within {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px var(--amber-glow);
+}
+
+.chat-input-wrapper input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 14px;
+    padding: 8px 0;
+}
+
+.chat-input-wrapper input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.chat-input-wrapper input::placeholder {
+    color: var(--text-muted);
+}
+
+.send-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gradient-warm);
+    border: none;
+    color: #1a1a1a;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.send-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 16px var(--coral-glow);
+}
+
+.send-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ── Welcome Screen ───────────────────────────────────────── */
+.welcome-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    gap: 16px;
+}
+
+.welcome-screen .emoji {
+    font-size: 72px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 20px rgba(255, 179, 71, 0.3));
+}
+
+.welcome-screen h2 {
+    font-size: 32px;
+    font-weight: 800;
+    background: var(--gradient-aurora);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.welcome-screen p {
+    color: var(--text-muted);
+    max-width: 420px;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+/* ── Deal Banner ──────────────────────────────────────────── */
+.deal-banner {
+    padding: 16px 32px;
+    text-align: center;
+    font-weight: 600;
+    animation: fadeInUp 0.4s ease;
+}
+
+.deal-banner.closed {
+    background: linear-gradient(135deg, rgba(105, 240, 174, 0.1), rgba(78, 205, 196, 0.1));
+    color: var(--lime);
+    border-bottom: 1px solid rgba(105, 240, 174, 0.2);
+}
+
+.deal-banner.abandoned {
+    background: rgba(255, 107, 107, 0.08);
+    color: var(--coral);
+    border-bottom: 1px solid rgba(255, 107, 107, 0.15);
+}
+
+/* ── Round Progress ───────────────────────────────────────── */
+.round-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.round-dots {
+    display: flex;
+    gap: 3px;
+}
+
+.round-dots .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+.round-dots .dot.active {
+    background: var(--amber);
+    box-shadow: 0 0 6px var(--amber-glow);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .app-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .messages-container {
+        padding: 16px;
+    }
+
+    .chat-input-area {
+        padding: 12px 16px 16px;
+    }
+
+    .message {
+        max-width: 90%;
+    }
+}

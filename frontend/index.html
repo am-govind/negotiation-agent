@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Sales Negotiator — ML-powered dynamic pricing with intelligent negotiation" />
+  <title>AI Sales Negotiator</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤝</text></svg>" />
+</head>
+
+<body>
+  <div id="app" class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>🛍️ Product Setup</h2>
+        <p>Configure your negotiation</p>
+      </div>
+
+      <div class="setup-section" id="setup-section">
+        <div class="field-group">
+          <label for="category-select">Product Category</label>
+          <select id="category-select">
+            <option value="">Loading categories...</option>
+          </select>
+        </div>
+
+        <div class="state-row">
+          <div class="field-group">
+            <label for="buyer-state">Buyer Region</label>
+            <select id="buyer-state">
+              <option value="">Loading...</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="seller-state">Seller Region</label>
+            <select id="seller-state">
+              <option value="">Loading...</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-actions">
+        <button class="btn btn-primary" id="start-btn" style="width:100%">
+          🚀 Start Negotiation
+        </button>
+        <button class="btn btn-secondary" id="reset-btn" style="width:100%; display:none">
+          🔄 New Negotiation
+        </button>
+      </div>
+
+
+      <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--border-glass)">
+        <a href="/login.html" class="btn btn-secondary"
+          style="width:100%; font-size:12px; text-decoration: none; text-align: center;">
+          🔐 Admin Login
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Chat -->
+    <main class="chat-area" id="chat-area">
+      <div class="chat-header">
+        <h1>🤝 AI Sales Negotiator</h1>
+        <div class="subtitle">Powered by XGBoost Dynamic Pricing + LangGraph Agentic AI</div>
+      </div>
+
+      <!-- Welcome Screen (visible before negotiation starts) -->
+      <div class="welcome-screen" id="welcome-screen">
+        <div class="emoji">💰</div>
+        <h2>Welcome to the Negotiation Arena</h2>
+        <p>
+          Select a product category and region in the sidebar, then click
+          <strong>Start Negotiation</strong> to begin haggling with our AI sales agent.
+          The agent uses ML-predicted pricing boundaries and tries to maximize profit!
+        </p>
+      </div>
+
+      <!-- Messages (hidden until negotiation starts) -->
+      <div class="messages-container" id="messages" style="display:none"></div>
+
+      <!-- Deal Banner -->
+      <div id="deal-banner" style="display:none"></div>
+
+      <!-- Chat Input -->
+      <div class="chat-input-area" id="chat-input-area" style="display:none">
+        <div class="chat-input-wrapper">
+          <input type="text" id="chat-input"
+            placeholder="Type your message... (Try: 'That's too expensive!' or 'Dell offers it for less')"
+            autocomplete="off" />
+          <button class="send-btn" id="send-btn" title="Send">↑</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Admin Modal Overlay -->
+  <div id="admin-modal" class="modal-overlay"
+    style="display: none; z-index: 10000; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); align-items: center; justify-content: center;">
+    <div class="modal-content"
+      style="width: 95%; max-width: 1200px; height: 90vh; background: #0f0f13; border: 1px solid rgba(255,179,71,0.1); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+      <div
+        style="padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,179,71,0.1); background: rgba(255,255,255,0.02);">
+        <h3 style="margin:0; font-size: 16px; color: #fff;">🔐 Admin Console</h3>
+        <button id="close-admin-modal-btn"
+          style="background: none; border: none; color: #aaa; font-size: 20px; cursor: pointer;">✖</button>
+      </div>
+      <iframe id="admin-iframe" src=""
+        style="width: 100%; height: 100%; border: none; flex: 1; background: transparent;"></iframe>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

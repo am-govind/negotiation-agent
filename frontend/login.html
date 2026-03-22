@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Admin Login — AI Sales Negotiator Dashboard" />
+    <title>Admin Login — AI Sales Negotiator</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>" />
+</head>
+
+<body>
+    <div class="login-layout">
+        <div class="login-card">
+            <div class="login-icon">🔐</div>
+            <h1>Admin Login</h1>
+            <p>Enter your credentials to access the dashboard</p>
+
+            <form class="login-form" id="login-form">
+                <div class="field-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter username" autocomplete="username" required />
+                </div>
+                <div class="field-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" autocomplete="current-password"
+                        required />
+                </div>
+                <div class="login-error" id="login-error"></div>
+                <button type="submit" class="btn btn-primary" id="login-btn" style="width:100%">
+                    🔓 Sign In
+                </button>
+            </form>
+
+            <p style="margin-top:24px; font-size:12px">
+                <a href="/" style="color: var(--cyan); text-decoration: none" class="back-link">← Back to Chat</a>
+            </p>
+        </div>
+    </div>
+
+    <script type="module" src="/src/login.js"></script>
+</body>
+
+</html>
